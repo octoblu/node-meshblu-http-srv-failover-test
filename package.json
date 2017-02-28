@@ -1,0 +1,38 @@
+{
+  "name": "node-meshblu-http-srv-failover-test",
+  "version": "1.1.2",
+  "description": "Put some description here",
+  "keywords": [
+    "cool",
+    "module"
+  ],
+  "homepage": "https://github.com/octoblu/node-meshblu-http-srv-failover-test",
+  "bugs": "https://github.com/octoblu/node-meshblu-http-srv-failover-test/issues",
+  "author": {
+    "name": "Octoblu",
+    "url": "https://github.com/octoblu"
+  },
+  "bin": "command.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/octoblu/node-meshblu-http-srv-failover-test.git"
+  },
+  "scripts": {
+    "start": "node command.js",
+    "test": "mocha test/*.spec.coffee"
+  },
+  "dependencies": {
+    "coffee-script": "^1.10.0",
+    "colors": "^1.1.2",
+    "dashdash": "^1.14.0"
+  },
+  "devDependencies": {
+  },
+  "peerDependencies": {
+  },
+  "engines": {
+    "node": ">=5.0.0",
+    "npm": ">=3.0.0"
+  },
+  "license": "MIT"
+}
