@@ -36,10 +36,14 @@ class Command
     return options
 
   run: =>
-    @meshblu.whoami (error, me) =>
+    @meshblu.authenticate (error) =>
       return @die error if error?
-      console.log JSON.stringify(me, null, 2)
-      @die()
+      console.log 'authenticated'
+
+      @meshblu.whoami (error, me) =>
+        return @die error if error?
+        console.log JSON.stringify(me, null, 2)
+        @die()
 
   die: (error) =>
     return process.exit(0) unless error?

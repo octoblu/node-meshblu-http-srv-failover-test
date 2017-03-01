@@ -26,7 +26,7 @@
     "colors": "^1.1.2",
     "dashdash": "^1.14.0",
     "meshblu-config": "^6.4.3",
-    "meshblu-http": "^9.6.0"
+    "meshblu-http": "^9.7.0"
   },
   "devDependencies": {},
   "peerDependencies": {},
