@@ -1,14 +1,10 @@
-colors        = require 'colors'
 dashdash      = require 'dashdash'
+MeshbluConfig = require 'meshblu-config'
+MeshbluHttp   = require 'meshblu-http'
 
 packageJSON = require './package.json'
 
 OPTIONS = [{
-  names: ['example', 'e']
-  type: 'string'
-  env: 'EXAMPLE'
-  help: 'example argument'
-}, {
   names: ['help', 'h']
   type: 'bool'
   help: 'Print this help and exit.'
@@ -21,7 +17,9 @@ OPTIONS = [{
 class Command
   constructor: ->
     process.on 'uncaughtException', @die
-    {@example} = @parseOptions()
+    @parseOptions()
+    meshbluConfig = new MeshbluConfig()
+    @meshblu = new MeshbluHttp meshbluConfig.toJSON()
 
   parseOptions: =>
     parser = dashdash.createParser({options: OPTIONS})
@@ -35,15 +33,13 @@ class Command
       console.log packageJSON.version
       process.exit 0
 
-    if !options.example
-      console.error @usage parser.help({includeEnv: true})
-      console.error colors.red 'Missing required parameter --example, -e, or env: EXAMPLE'
-      process.exit 1
-
     return options
 
   run: =>
-    console.log "Hi Example! #{@example}"
+    @meshblu.whoami (error, me) =>
+      return @die error if error?
+      console.log JSON.stringify(me, null, 2)
+      @die()
 
   die: (error) =>
     return process.exit(0) unless error?
